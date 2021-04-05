@@ -9,15 +9,15 @@ class AppInfo {
   final String versionName;
   final String updateLog;
   final String apkUrl;
-  final int apkSize;
+  final int? apkSize;
 
   AppInfo({
-    this.hasUpdate,
-    this.isIgnorable,
-    this.versionCode,
-    this.versionName,
-    this.updateLog,
-    this.apkUrl,
+    required this.hasUpdate,
+    this.isIgnorable = false,
+    required this.versionCode,
+    required this.versionName,
+    required this.updateLog,
+    required this.apkUrl,
     this.apkSize,
   });
 
@@ -33,7 +33,7 @@ class AppInfo {
     };
   }
 
-  static AppInfo fromMap(Map<String, dynamic> map) {
+  static AppInfo? fromMap(Map<String, dynamic>? map) {
     if (map == null) return null;
 
     return AppInfo(
@@ -49,7 +49,7 @@ class AppInfo {
 
   String toJson() => json.encode(toMap());
 
-  static AppInfo fromJson(String source) => fromMap(json.decode(source));
+  static AppInfo? fromJson(String source) => fromMap(json.decode(source));
 
   @override
   String toString() {

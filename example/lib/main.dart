@@ -110,8 +110,8 @@ class _MyAppState extends State<MyApp> {
 
   ///将自定义的json内容解析为UpdateEntity实体类
   UpdateEntity customParseJson(String json) {
-    AppInfo appInfo = AppInfo.fromJson(json);
-    print(appInfo);
+    AppInfo appInfo = AppInfo.fromJson(json)!;
+
     return UpdateEntity(
         hasUpdate: appInfo.hasUpdate,
         isIgnorable: appInfo.isIgnorable,
@@ -217,7 +217,7 @@ class _MyAppState extends State<MyApp> {
                 )),
                 autoFitWidget(ButtonBar(
                   alignment:
-                  MainAxisAlignment.start, //布局方向，默认MainAxisAlignment.end
+                      MainAxisAlignment.start, //布局方向，默认MainAxisAlignment.end
                   mainAxisSize: MainAxisSize.min, //主轴大小，默认MainAxisSize.max
                   children: <Widget>[
                     RaisedButton(
@@ -298,10 +298,12 @@ class _MyAppState extends State<MyApp> {
     FlutterXUpdate.updateByInfo(updateEntity: customParseJson(_customJson));
   }
 
-
   ///自定义更新弹窗样式
   void customPromptDialog() {
-    FlutterXUpdate.checkUpdate(url: _updateUrl, themeColor: '#FFFFAC5D', topImageRes: 'bg_update_top', buttonTextColor: '#FFFFFFFF');
+    FlutterXUpdate.checkUpdate(
+        url: _updateUrl,
+        themeColor: '#FFFFAC5D',
+        topImageRes: 'bg_update_top',
+        buttonTextColor: '#FFFFFFFF');
   }
-
 }

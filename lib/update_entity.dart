@@ -1,7 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/cupertino.dart';
-
 ///
 /// 版本更新信息，用于显示版本更新弹窗
 ///
@@ -32,19 +30,19 @@ class UpdateEntity {
   final String downloadUrl;
 
   ///apk的大小
-  final int apkSize;
+  final int? apkSize;
 
   ///apk文件的加密值（这里默认是md5值）
-  final String apkMd5;
+  final String? apkMd5;
 
   UpdateEntity({
-    @required this.hasUpdate,
-    this.isForce,
-    this.isIgnorable,
-    @required this.versionCode,
-    @required this.versionName,
-    @required this.updateContent,
-    @required this.downloadUrl,
+    required this.hasUpdate,
+    this.isForce = false,
+    this.isIgnorable = false,
+    required this.versionCode,
+    required this.versionName,
+    required this.updateContent,
+    required this.downloadUrl,
     this.apkSize,
     this.apkMd5,
   });
@@ -63,7 +61,7 @@ class UpdateEntity {
     };
   }
 
-  static UpdateEntity fromMap(Map<String, dynamic> map) {
+  static UpdateEntity? fromMap(Map<String, dynamic>? map) {
     if (map == null) return null;
 
     return UpdateEntity(
@@ -81,7 +79,7 @@ class UpdateEntity {
 
   String toJson() => json.encode(toMap());
 
-  static UpdateEntity fromJson(String source) => fromMap(json.decode(source));
+  static UpdateEntity? fromJson(String source) => fromMap(json.decode(source));
 
   @override
   String toString() {
